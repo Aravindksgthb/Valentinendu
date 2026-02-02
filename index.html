@@ -89,12 +89,24 @@
   noBtn.style.left = "220px";
   noBtn.style.top = "270px";
 
-  function moveNo() {
-    const maxX = card.clientWidth - noBtn.offsetWidth;
-    const maxY = card.clientHeight - noBtn.offsetHeight;
+function moveNo() {
+  const maxX = card.clientWidth - noBtn.offsetWidth;
+  const maxY = card.clientHeight - noBtn.offsetHeight;
 
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top = Math.random() * maxY + "px";
 
-    if (yesScale < maxYesScale) {
-      yesScale = Math
+  if (yesScale < maxYesScale) {
+    yesScale += 0.15;
+    yesBtn.style.transform = `scale(${yesScale})`;
+  }
+}
+
+// Desktop hover
+noBtn.addEventListener("mouseenter", moveNo);
+
+// Mobile touch
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveNo();
+});
