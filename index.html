@@ -90,6 +90,7 @@
   noBtn.style.top = "270px";
 
 function moveNo() {
+  noBtn.style.position = "absolute";
   const maxX = card.clientWidth - noBtn.offsetWidth;
   const maxY = card.clientHeight - noBtn.offsetHeight;
 
@@ -111,3 +112,6 @@ noBtn.addEventListener("touchstart", (e) => {
   moveNo();
 });
 </script>
+</body>
+</html>
+ 
