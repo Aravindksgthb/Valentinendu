@@ -1,124 +1,122 @@
-5<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine 💖</title>
 
-<style>
-  body {
-    margin: 0;
-    background: #f2f2f2;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  <style>
+    body {
+      margin: 0;
+      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-  .paper {
-    background: #fffdf7;
-    width: 320px;
-    min-height: 420px;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+    .paper {
+      background: #fffdf7;
+      width: 320px;
+      min-height: 420px;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-  img.cat {
-    width: 130px;
-    margin-bottom: 10px;
-  }
+    img.cat {
+      width: 130px;
+      margin-bottom: 10px;
+    }
 
-  h2 {
-    margin-bottom: 20px;
-  }
+    h2 {
+      margin-bottom: 20px;
+    }
 
-  button {
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
+    button {
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-  #yes {
-    padding: 14px 32px;
-    font-size: 18px;
-    background: #ff5e8e;
-    color: white;
-    transition: transform 0.2s ease;
-  }
+    #yes {
+      padding: 14px 32px;
+      font-size: 18px;
+      background: #ff5e8e;
+      color: white;
+      transition: transform 0.2s ease;
+    }
 
-  #no {
-    padding: 6px 12px;
-    font-size: 12px;
-    position: absolute;
-    background: #ddd;
-  }
+    #no {
+      padding: 6px 12px;
+      font-size: 12px;
+      position: absolute;
+      background: #ddd;
+    }
 
-  .result {
-    width: 220px;
-    margin-top: 15px;
-  }
-</style>
+    .result img {
+      width: 220px;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="paper" id="card">
-  <img class="cat"
-       src="https://media.tenor.com/zJvexdmTjA4AAAAi/cat-love.gif"
-       alt="cat">
+  <div class="paper" id="card">
+    <img class="cat" src="https://media.tenor.com/zJvexdmTjAAAAAi/cat-love.gif" alt="cat">
 
-  <h2>Will you be my Valentine?</h2>
-<div class="result" id="result" style="display:none;">
-  <img src="https://media.tenor.com/zJvexdmTjAAAAAI/cat-love.gif" alt="love gif">
-</div>
-  <button id="yes">YES</button>
-  <button id="no">no</button>
-</div>
+    <h2>Will you be my Valentine? 💖</h2>
 
-<script>
-  const noBtn = document.getElementById("no");
-  const card = document.getElementById("card");
-  const yesBtn = document.getElementById("yes");
+    <button id="yes">YES</button>
+    <button id="no">no</button>
+  </div>
 
-  let yesScale = 1;
-  const maxYesScale = 2.5;
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const card = document.getElementById("card");
 
-  noBtn.style.left = "220px";
-  noBtn.style.top = "270px";
+    let yesScale = 1;
+    const maxYesScale = 2.5;
 
-function moveNo() {
-  noBtn.style.position = "absolute";
-  const maxX = card.clientWidth - noBtn.offsetWidth;
-  const maxY = card.clientHeight - noBtn.offsetHeight;
+    noBtn.style.left = "220px";
+    noBtn.style.top = "270px";
 
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top = Math.random() * maxY + "px";
+    function moveNo() {
+      const maxX = card.clientWidth - noBtn.offsetWidth;
+      const maxY = card.clientHeight - noBtn.offsetHeight;
 
-  if (yesScale < maxYesScale) {
-    yesScale += 0.15;
-    yesBtn.style.transform = `scale(${yesScale})`;
-  }
-}
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
 
-// Desktop hover
-noBtn.addEventListener("mouseenter", moveNo);
+      if (yesScale < maxYesScale) {
+        yesScale += 0.15;
+        yesBtn.style.transform = `scale(${yesScale})`;
+      }
+    }
 
-// Mobile touch
-noBtn.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  moveNo();
-});
- yesBtn.addEventListener("click", () => {
-card.innerHTML = `
-<h2>Yayyy 💖</h2>
-<img class="result" src="https://media.tenor.com/9G6yJj5Z9b0AAAAC/love-happy.gif">   `;
- });
-</script>
+    // Desktop
+    noBtn.addEventListener("mouseenter", moveNo);
+
+    // Mobile
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNo();
+    });
+
+    // YES click → show GIF
+    yesBtn.addEventListener("click", () => {
+      card.innerHTML = `
+        <h2>Yayyy 💖</h2>
+        <img src="https://media.tenor.com/9G6gjJY9QAAAAAi/love-happy.gif" alt="happy gif">
+      `;
+    });
+  </script>
+
 </body>
 </html>
- 
