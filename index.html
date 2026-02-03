@@ -75,7 +75,15 @@
 
     <button id="yes">YES</button>
     <button id="no">no</button>
+  <div id="result" style="display:none; margin-top:20px;">
+  <h2>Yayyy 💖</h2>
+  <img
+    src="https://media.tenor.com/zJvexdmTjAAAAAi/cat-love.gif"
+    alt="happy gif"
+    style="width:200px;"
+  >
   </div>
+</div>
 
   <script>
     const noBtn = document.getElementById("no");
@@ -112,12 +120,12 @@
 
     // YES click → show GIF
 yesBtn.addEventListener("click", () => {
-  card.innerHTML = `
-    <h2>Yayyy 💖</h2>
-    <img src="https://media.tenor.com/9G6gjJY9QAAAAAi/love-happy.gif" alt="happy gif">
-  `;
+  document.getElementById("result").style.display = "block";
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
 });
   </script>
 
 </body>
 </html>
+ 
