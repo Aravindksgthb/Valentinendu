@@ -108,36 +108,35 @@ const yesBtn = document.getElementById("yes");
 const card = document.getElementById("card");
 const result = document.getElementById("result");
 
-let yesScale = 1;
-const maxYesScale = 2.5;
-  // fixed starting position for NO button
-noBtn.style.position = "absolute";
-noBtn.style.left = "55%";
-noBtn.style.top = "60%";
-// place NO button initially
+document.addEventListener("DOMContentLoaded", () => {
+  let yesScale = 1;
+  const maxYesScale = 2.5;
 
-function moveNo() {
-  const maxX = card.clientWidth - noBtn.offsetWidth;
-  const maxY = card.clientHeight - noBtn.offsetHeight;
+  // FIXED starting position (NOT random)
+  noBtn.style.position = "absolute";
+  noBtn.style.left = "160px";
+  noBtn.style.top = "260px";
 
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top = Math.random() * maxY + "px";
+  function moveNo() {
+    const maxX = card.clientWidth - noBtn.offsetWidth;
+    const maxY = card.clientHeight - noBtn.offsetHeight;
 
-  if (yesScale < maxYesScale) {
-  yesScale += 0.12;
-  yesBtn.style.transform = `scale(${yesScale}) rotate(${Math.random() * 10 - 5}deg)`;
-}
-}
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
 
-// Desktop
-noBtn.addEventListener("mouseenter", moveNo);
+    if (yesScale < maxYesScale) {
+      yesScale += 0.12;
+      yesBtn.style.transform =
+        `scale(${yesScale}) rotate(${Math.random() * 10 - 5}deg)`;
+    }
+  }
 
-// Mobile
-noBtn.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  moveNo();
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveNo();
+  });
 });
-
 // YES click
 yesBtn.addEventListener("click", () => {
   document.getElementById("question").innerText =
