@@ -76,15 +76,15 @@ button {
 <div class="paper" id="card">
 
   <img class="cat" src="First.gif" alt="cat">
-  <h2>Will you be my Valentine? 💖</h2>
+  <h2 id="question">Will you be my Valentine? 💖</h2>
 
   <button id="yes">YES</button>
   <button id="no">no</button>
 
-  <div class="result" id="result">
-    <h2>Yayyy 💖</h2>
-    <img src="Second.gif" alt="happy gif" style="width:200px;">
-  </div>
+  <div class="result" id="result" style="display:none;">
+  <h2>Yayyy 💖</h2>
+  <img src="Second.gif" alt="happy gif" style="width:200px;">
+</div>
 
 </div>
 
@@ -124,6 +124,9 @@ noBtn.addEventListener("touchstart", (e) => {
 
 // YES click
 yesBtn.addEventListener("click", () => {
+  document.getElementById("question").innerText =
+    "Yayyy!! You just made my day 💕🥰";
+
   result.style.display = "block";
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
