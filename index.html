@@ -112,10 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let yesScale = 1;
   const maxYesScale = 2.5;
 
-  // FIXED starting position (NOT random)
-  noBtn.style.position = "absolute";
-  noBtn.style.left = "240px";
-noBtn.style.top = "300px";
+  // place NO slightly to the right of YES on load
+const yesRect = yesBtn.getBoundingClientRect();
+const cardRect = card.getBoundingClientRect();
+
+noBtn.style.position = "absolute";
+noBtn.style.left = (yesRect.right - cardRect.left + 20) + "px";
+noBtn.style.top  = (yesRect.top - cardRect.top) + "px";
   function moveNo() {
     const maxX = card.clientWidth - noBtn.offsetWidth;
     const maxY = card.clientHeight - noBtn.offsetHeight;
