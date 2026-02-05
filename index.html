@@ -110,10 +110,10 @@ const result = document.getElementById("result");
 
 let yesScale = 1;
 const maxYesScale = 2.5;
-  // Set initial NO position (clean starting spot)
+  // fixed starting position for NO button
+noBtn.style.position = "absolute";
 noBtn.style.left = "55%";
 noBtn.style.top = "60%";
-
 // place NO button initially
 moveNo();
 
