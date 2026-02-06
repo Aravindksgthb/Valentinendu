@@ -148,6 +148,11 @@ const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 const card = document.getElementById("card");
 const result = document.getElementById("result");
+
+let yesScale = 1;
+const maxYesScale = 2.5;
+
+// hearts
 function spawnHearts() {
   for (let i = 0; i < 6; i++) {
     const heart = document.createElement("div");
@@ -156,54 +161,48 @@ function spawnHearts() {
     heart.style.left = Math.random() * 200 + 40 + "px";
     heart.style.top = "260px";
     card.appendChild(heart);
-}
-document.addEventListener("DOMContentLoaded", () => {
-  let yesScale = 1;
-  const maxYesScale = 2.5;
-  
+
+    setTimeout(() => heart.remove(), 1500);
+  }
 }
 
-  function moveNo() {
+// NO dodge
+function moveNo() {
   noBtn.style.position = "absolute";
   noBtn.style.zIndex = "10";
   noBtn.style.animation = "shake 0.15s";
-  const padding = 25; // same as .paper padding
 
-  const maxX =
-    card.clientWidth - noBtn.offsetWidth - padding;
-  const maxY =
-    card.clientHeight - noBtn.offsetHeight - padding;
-
-  const minX = padding;
-  const minY = padding;
+  const padding = 25;
+  const maxX = card.clientWidth - noBtn.offsetWidth - padding;
+  const maxY = card.clientHeight - noBtn.offsetHeight - padding;
 
   noBtn.style.left =
-    Math.random() * (maxX - minX) + minX + "px";
+    Math.random() * maxX + padding + "px";
   noBtn.style.top =
-    Math.random() * (maxY - minY) + minY + "px";
+    Math.random() * maxY + padding + "px";
 
   if (yesScale < maxYesScale) {
-  yesScale += 0.12;
-  yesBtn.style.transform =
-    `scale(${yesScale}) rotate(${Math.random() * 10 - 5}deg)`;
+    yesScale += 0.12;
+    yesBtn.style.transform =
+      `scale(${yesScale}) rotate(${Math.random() * 10 - 5}deg)`;
+  }
+
+  setTimeout(() => {
+    noBtn.style.animation = "";
+  }, 150);
 }
 
-setTimeout(() => {
-  noBtn.style.animation = "";
-}, 150);
-}
-setTimeout(() => {
-  noBtn.style.animation = "";
-}, 150);
-  // activate dodge AFTER page fully settles
-setTimeout(() => {
-  noBtn.addEventListener("mouseover", moveNo);
-  noBtn.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    moveNo();
-  });
-}, 300);
+// activate dodge
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNo();
+    });
+  }, 300);
 });
+
 // YES click
 yesBtn.addEventListener("click", () => {
   document.getElementById("question").innerText =
@@ -215,6 +214,5 @@ yesBtn.addEventListener("click", () => {
   noBtn.style.display = "none";
 });
 </script>
-
 </body>
 </html> 
