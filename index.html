@@ -98,6 +98,30 @@ button:hover {
   gap: 16px;
   margin-top: 10px;
   }
+  @keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+  }
+  .heart {
+  position: absolute;
+  font-size: 18px;
+  animation: floatUp 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.4);
+  }
+}
 </style>
 </head>
 
@@ -128,11 +152,23 @@ const result = document.getElementById("result");
 document.addEventListener("DOMContentLoaded", () => {
   let yesScale = 1;
   const maxYesScale = 2.5;
+  function spawnHearts() {
+  for (let i = 0; i < 6; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 200 + 40 + "px";
+    heart.style.top = "260px";
+    card.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 1500);
+  }
+}
 
   function moveNo() {
   noBtn.style.position = "absolute";
   noBtn.style.zIndex = "10";
-
+  noBtn.style.animation = "shake 0.15s";
   const padding = 25; // same as .paper padding
 
   const maxX =
@@ -154,7 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
       `scale(${yesScale}) rotate(${Math.random() * 10 - 5}deg)`;
   }
 }
-
+setTimeout(() => {
+  noBtn.style.animation = "";
+}, 150);
   // activate dodge AFTER page fully settles
 setTimeout(() => {
   noBtn.addEventListener("mouseover", moveNo);
@@ -167,9 +205,10 @@ setTimeout(() => {
 // YES click
 yesBtn.addEventListener("click", () => {
   document.getElementById("question").innerText =
-    "Yayyy!! You just made my day 💕🥰";
+    "You just made my day 💕🥰";
 
   result.style.display = "block";
+  spawnHearts();
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
 });
