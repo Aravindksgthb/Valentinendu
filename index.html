@@ -9,14 +9,33 @@
 <style>
 body {
   margin: 0;
-  background: #f2f2f2;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
 
+  background: linear-gradient(
+    120deg,
+    #ffe6eb,
+    #fff0d9,
+    #f0e6ff,
+    #e6f7ff
+  );
+  background-size: 400% 400%;
+  animation: dreamyBG 30s ease infinite;
+}
+@keyframes dreamyBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 .paper {
   background: #fffdf7;
   width: 320px;
