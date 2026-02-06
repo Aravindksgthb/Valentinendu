@@ -116,7 +116,9 @@ button:hover {
   animation: floatUp 1.5s ease-out forwards;
   pointer-events: none;
 }
-
+.result h2 {
+  animation: pop 0.6s ease-out;
+}
 @keyframes floatUp {
   0% {
     opacity: 1;
@@ -159,14 +161,20 @@ const maxYesScale = 2.5;
 
 // hearts
 function spawnHearts() {
-  for (let i = 0; i < 6; i++) {
+  const rect = yesBtn.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+
+  for (let i = 0; i < 8; i++) {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerText = "💖";
-    heart.style.left = Math.random() * 200 + 40 + "px";
-    heart.style.top = "260px";
-    card.appendChild(heart);
 
+    heart.style.left =
+      rect.left - cardRect.left + rect.width / 2 + "px";
+    heart.style.top =
+      rect.top - cardRect.top + "px";
+
+    card.appendChild(heart);
     setTimeout(() => heart.remove(), 1500);
   }
 }
@@ -209,14 +217,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // YES click
   yesBtn.addEventListener("click", () => {
+  // smooth fade-out
+  card.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+  card.style.transform = "scale(1.03)";
+  card.style.opacity = "0";
+
+  setTimeout(() => {
     document.getElementById("question").innerText =
       "You just made my day 💕🥰";
 
     result.style.display = "block";
     spawnHearts();
-    noBtn.style.display = "none";
-  });
 
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+
+    // fade back in
+    card.style.opacity = "1";
+    card.style.transform = "scale(1)";
+  }, 600);
+});
 });
 </script>
 </body>
