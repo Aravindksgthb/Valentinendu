@@ -27,6 +27,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
+  transition: background 1.2s ease, box-shadow 1.2s ease;
 }
 
 img.cat {
@@ -130,9 +131,13 @@ button:hover {
   }
 }
   .paper.yes-mode {
-  background: linear-gradient(135deg, #ffe6eb, #fff0d9);
-  box-shadow: 0 18px 40px rgba(230, 57, 70, 0.35);
-  transition: background 1s ease, box-shadow 1s ease;
+  background: linear-gradient(
+    135deg,
+    #ffb3c6,
+    #ffd6e0,
+    #fff0d9
+  );
+  box-shadow: 0 22px 50px rgba(230, 57, 70, 0.45);
   }
 </style>
 </head>
@@ -245,7 +250,7 @@ resetUI();
   // smooth fade-out
   card.style.transition = "transform 0.6s ease, opacity 0.6s ease";
   card.style.transform = "scale(1.03)";
-  card.style.opacity = "0";
+  card.style.opacity = "0.9";
 
   setTimeout(() => {
     document.getElementById("question").innerText =
