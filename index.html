@@ -158,7 +158,26 @@ const result = document.getElementById("result");
 
 let yesScale = 1;
 const maxYesScale = 2.5;
+function resetUI() {
+  yesScale = 1;
 
+  // reset question
+  document.getElementById("question").innerText =
+    "Will you be my Valentine? 💖";
+
+  // reset buttons
+  yesBtn.style.display = "inline-block";
+  noBtn.style.display = "inline-block";
+
+  yesBtn.style.transform = "scale(1)";
+  yesBtn.style.animation = "pulseGlow 1.6s infinite";
+
+  // reset result
+  result.style.display = "none";
+
+  // remove stray hearts (safety)
+  document.querySelectorAll(".heart").forEach(h => h.remove());
+}
 // hearts
 function spawnHearts() {
   const rect = yesBtn.getBoundingClientRect();
@@ -205,7 +224,7 @@ function moveNo() {
 
 // activate dodge
 document.addEventListener("DOMContentLoaded", () => {
-
+resetUI();
   // activate NO dodge
   setTimeout(() => {
     noBtn.addEventListener("mouseover", moveNo);
