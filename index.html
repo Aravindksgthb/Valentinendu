@@ -60,7 +60,6 @@ button {
   padding: 6px 12px;
   font-size: 12px;
   background: #ddd;
-  position: absolute;
 }
 button:hover {
   transform: scale(1.08);
@@ -83,6 +82,13 @@ button:hover {
 .result {
   animation: pop 0.5s ease-out;
 }
+  .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+  position: relative;
+  }
 </style>
 </head>
 
@@ -92,8 +98,10 @@ button:hover {
   <img class="cat" src="First.gif" alt="cat">
   <h2 id="question">Will you be my Valentine? 💖</h2>
 
+  <div class="buttons">
   <button id="yes">YES</button>
   <button id="no">no</button>
+  </div>
 
   <div class="result" id="result" style="display:none;">
   <h2>Yayyy 💖</h2>
@@ -112,16 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let yesScale = 1;
   const maxYesScale = 2.5;
 
-  // place NO slightly to the right of YES on load
-const yesRect = yesBtn.getBoundingClientRect();
-const cardRect = card.getBoundingClientRect();
-
-noBtn.style.position = "absolute";
-noBtn.style.left = (yesRect.right - cardRect.left + 20) + "px";
-noBtn.style.top  = (yesRect.top - cardRect.top) + "px";
   function moveNo() {
-    const maxX = card.clientWidth - noBtn.offsetWidth;
-    const maxY = card.clientHeight - noBtn.offsetHeight;
+  noBtn.style.position = "absolute";
+
+  const maxX = card.clientWidth - noBtn.offsetWidth;
+  const maxY = card.clientHeight - noBtn.offsetHeight;
 
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
