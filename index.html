@@ -235,20 +235,7 @@ const yesBtn = document.getElementById("yes");
 const card = document.getElementById("card");
 const result = document.getElementById("result");
 // reset question
-  function typeText(element, text, speed = 55) {
-  element.innerText = "";
-  element.classList.add("typing");
-  let i = 0;
-
-  const interval = setInterval(() => {
-    element.innerText += text[i];
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      element.classList.remove("typing");
-    }
-  }, speed);
-  }
+  
 let yesScale = 1;
 const maxYesScale = 2.5;
 function resetUI() {
@@ -256,14 +243,42 @@ function resetUI() {
 typeText(
   document.getElementById("question"),
   "Will you be my Valentine? 💖",
-  55
+  70
 );
   // reset buttons
   yesBtn.style.display = "inline-block";
   noBtn.style.display = "inline-block";
 
   yesBtn.style.transform = "scale(1)";
-  yesBtn.style.animation = "pulseGlow 1.6s infinite";
+  yesBtn.style.animatiofunction typeText(element, text, baseSpeed = 60) {
+  element.innerText = "";
+  element.classList.add("typing");
+  let i = 0;
+
+  function typeNext() {
+    element.innerText += text[i];
+    i++;
+
+    // remove cursor slightly before the end (feels natural)
+    if (i >= text.length - 1) {
+      element.classList.remove("typing");
+    }
+
+    if (i < text.length) {
+      // random human delay
+      let delay = baseSpeed + Math.random() * 80;
+
+      // pause longer after punctuation
+      if (/[.,!?💖🥰]/.test(text[i - 1])) {
+        delay += 250;
+      }
+
+      setTimeout(typeNext, delay);
+    }
+  }
+
+  setTimeout(typeNext, baseSpeed);
+  }n = "pulseGlow 1.6s infinite";
 
   // reset result
   result.style.display = "none";
@@ -338,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
       typeText(
         document.getElementById("question"),
         "You just made my day 💕🥰",
-        45
+        55
       );
 
       result.style.display = "block";
