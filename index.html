@@ -95,7 +95,11 @@ h2 {
   letter-spacing: 0.5px;
   margin-bottom: 20px;
 }
-
+h2 {
+  font-family: "Patrick Hand", cursive;
+  letter-spacing: 0.5px;
+  white-space: pre-wrap;
+}
 /* typing cursor */
 .typing::after {
   content: "▍";
@@ -213,12 +217,12 @@ const maxYesScale = 2.5;
 
 /* typing */
 function typeText(element, text, baseSpeed = 60) {
-  element.innerText = "";
+  element.textContent = "";
   let chars = Array.from(text); // <-- IMPORTANT
   let i = 0;
 
   function typeNext() {
-    element.innerText += chars[i];
+    element.textContent += text[i];
     i++;
 
     if (i < chars.length) {
