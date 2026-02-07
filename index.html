@@ -212,24 +212,28 @@ let yesScale = 1;
 const maxYesScale = 2.5;
 
 /* typing */
-function typeText(el, text, baseSpeed = 60) {
-  el.innerText = "";
-  el.classList.add("typing");
+function typeText(element, text, baseSpeed = 60) {
+  element.innerText = "";
+  let chars = Array.from(text); // <-- IMPORTANT
   let i = 0;
 
-  function next() {
-    el.innerText += text[i++];
-    if (i >= text.length - 1) el.classList.remove("typing");
+  function typeNext() {
+    element.innerText += chars[i];
+    i++;
 
-    if (i < text.length) {
+    if (i < chars.length) {
       let delay = baseSpeed + Math.random() * 80;
-      if (/[.,!?💖🥰]/.test(text[i - 1])) delay += 250;
-      setTimeout(next, delay);
+
+      if (/[.,!?]/.test(chars[i - 1])) {
+        delay += 250;
+      }
+
+      setTimeout(typeNext, delay);
     }
   }
-  setTimeout(next, baseSpeed);
-}
 
+  setTimeout(typeNext, baseSpeed);
+}
 /* hearts */
 function spawnHearts() {
   const rect = yesBtn.getBoundingClientRect();
